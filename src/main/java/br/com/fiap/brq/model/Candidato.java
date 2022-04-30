@@ -84,6 +84,38 @@ public class Candidato {
 		return certificacao;
 	}
 
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public void setSkill(String skill) {
+		this.skill = skill;
+	}
+
+	public void setCertificacao(String certificacao) {
+		this.certificacao = certificacao;
+	}
+
 	@Override
 	public String toString() {
 		return "Candidato [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", telefone=" + telefone

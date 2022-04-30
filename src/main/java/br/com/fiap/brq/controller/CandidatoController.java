@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.fiap.brq.dto.CandidatoDto;
 import br.com.fiap.brq.model.Candidato;
 import br.com.fiap.brq.repository.CandidatoRepository;
 
@@ -37,8 +37,7 @@ public class CandidatoController {
 		return candidatos;
 	}
 	
-	@GetMapping
-	@RequestMapping(value = "/skill/{skill}", method = RequestMethod.GET)
+	@GetMapping(value = "/skill/{skill}")
 	public ResponseEntity<Page<Candidato>> buscaInfosCandidatoPorSkill(@PathVariable String skill) {
 		
 		Pageable paginacao = PageRequest.of(0, 10, Sort.by(
@@ -58,7 +57,7 @@ public class CandidatoController {
 		return ResponseEntity.notFound().build();
 	}
 		
-	@RequestMapping(value = "/nome/{nome}", method = RequestMethod.GET)
+	@GetMapping(value = "/nome/{nome}")
 	public ResponseEntity<Candidato> buscaInfosCandidatoPorNome(@PathVariable String nome) {
 		Optional<Candidato> candidato = candidatoRepository.findByNome(nome);
 		
@@ -69,7 +68,7 @@ public class CandidatoController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
+	@GetMapping(value = "/email/{email}")
 	public ResponseEntity<Candidato> buscaInfosCandidatoPorEmail(@PathVariable String email) {
 		Optional<Candidato> candidato = candidatoRepository.findByEmail(email);
 		
@@ -80,7 +79,7 @@ public class CandidatoController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@RequestMapping(value = "/cpf/{cpf}", method = RequestMethod.GET)
+	@GetMapping(value = "/cpf/{cpf}")
 	public ResponseEntity<Candidato> buscaInfosCandidatoPorCpf(@PathVariable String cpf) {
 		Optional<Candidato> candidato = candidatoRepository.findByCpf(cpf);
 		
@@ -91,7 +90,7 @@ public class CandidatoController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@RequestMapping(value = "/certificacao/{certificacao}", method = RequestMethod.GET)
+	@GetMapping(value = "/certificacao/{certificacao}")
 	public ResponseEntity<Candidato> buscaInfosCandidatoPorCertificacao(@PathVariable String certificacao) {
 		Optional<Candidato> candidato = candidatoRepository.findByCertificacao(certificacao);
 		
@@ -104,7 +103,10 @@ public class CandidatoController {
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Candidato> cadastra(@RequestBody Candidato candidato, UriComponentsBuilder uriComponentsBuilder) {
+	public ResponseEntity<Candidato> cadastra(@RequestBody CandidatoDto candidatoDto, UriComponentsBuilder uriComponentsBuilder) {
+		
+		Candidato candidato = candidatoDto.converte(candidatoDto);
+		
 		candidatoRepository.save(candidato);
 		
 		URI uri = uriComponentsBuilder.path("/candidato/{id}").buildAndExpand(candidato.getId()).toUri();
