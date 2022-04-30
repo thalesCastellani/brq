@@ -35,7 +35,7 @@ public class CandidatoController {
 	@GetMapping
 	public Page<Candidato> lista(@RequestParam(required = false) String skill) {
 		
-		Pageable paginacao = PageRequest.of(0, 5, Sort.by(
+		Pageable paginacao = PageRequest.of(0, 10, Sort.by(
 				List.of(
 						new Sort.Order(Sort.Direction.ASC, "skill"),
 						new Sort.Order(Sort.Direction.DESC, "certificacao", Sort.NullHandling.NULLS_LAST),
@@ -104,5 +104,6 @@ public class CandidatoController {
 		URI uri = uriComponentsBuilder.path("/candidato/{id}").buildAndExpand(candidato.getId()).toUri();
 		return ResponseEntity.created(uri).body(candidato);
 	}
+	
 
 }
