@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -31,9 +30,16 @@ public class CandidatoController {
 
 	@Autowired
 	private CandidatoRepository candidatoRepository;
-
+	
 	@GetMapping
-	public Page<Candidato> lista(@RequestParam(required = false) String skill) {
+	public List<Candidato> lista() {
+		List<Candidato> candidatos = candidatoRepository.findAll();
+		return candidatos;
+	}
+	
+	@GetMapping
+	@RequestMapping(value = "/skill/{skill}", method = RequestMethod.GET)
+	public ResponseEntity<Page<Candidato>> buscaInfosCandidatoPorSkill(@PathVariable String skill) {
 		
 		Pageable paginacao = PageRequest.of(0, 10, Sort.by(
 				List.of(
@@ -43,15 +49,15 @@ public class CandidatoController {
 						)
 				));
 		
-		if (skill == null) {
-			Page<Candidato> candidatos = candidatoRepository.findAll(paginacao);
-			return candidatos;
-		} else {
-			Page<Candidato> candidatos = candidatoRepository.findBySkill(skill, paginacao);
-			return candidatos;
+		Page<Candidato> candidatos = candidatoRepository.findBySkill(skill, paginacao);
+		
+		if (!candidatos.isEmpty()) {
+			return ResponseEntity.ok(candidatos);
 		}
+		
+		return ResponseEntity.notFound().build();
 	}
-	
+		
 	@RequestMapping(value = "/nome/{nome}", method = RequestMethod.GET)
 	public ResponseEntity<Candidato> buscaInfosCandidatoPorNome(@PathVariable String nome) {
 		Optional<Candidato> candidato = candidatoRepository.findByNome(nome);
