@@ -1,5 +1,4 @@
-# brq
-ENTERPRISE CONNECTION BRQ
+# ENTERPRISE CONNECTION BRQ
 
 Tecnologias utilizadas:
 - Java 8
