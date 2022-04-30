@@ -21,7 +21,7 @@ Para trabalhar com a API, basta utilizar o Swagger, acessando a url: http://loca
 
 É possível trabalhar com todos os endpoints, desde buscas pelas palavras-chave e o de cadastro.
 
-Atenção para o endpoint que é o diferencial da entrega: 
+Atenção para o primeiro endpoint(GET /candidato) que é o diferencial da entrega: 
 
 Nele é feita uma busca pela skill por query param, onde:
   * Caso a skill informada exista no banco de dados, trará os registros dos candidatos que possuem essa skill e pela ordem de ranking (quais possuem a skill mas também possuem a certificaç!ao referente aquela skill)
