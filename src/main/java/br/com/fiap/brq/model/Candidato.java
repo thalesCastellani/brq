@@ -1,5 +1,6 @@
 package br.com.fiap.brq.model;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -40,7 +41,7 @@ public class Candidato {
 
 	@Column(name = "dt_nascimento")
 	@JsonProperty("data_nascimento")
-	private String dataNascimento;
+	private LocalDateTime dataNascimento;
 
 	@Column(name = "ds_skill", nullable = true)
 	private String skill;
@@ -72,7 +73,7 @@ public class Candidato {
 		return genero;
 	}
 
-	public String getDataNascimento() {
+	public LocalDateTime getDataNascimento() {
 		return dataNascimento;
 	}
 
@@ -104,7 +105,7 @@ public class Candidato {
 		this.genero = genero;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(LocalDateTime dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

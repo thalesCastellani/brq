@@ -1,12 +1,14 @@
 package br.com.fiap.brq.dto;
 
+import java.time.LocalDateTime;
+
 import br.com.fiap.brq.model.Candidato;
 import br.com.fiap.brq.model.Genero;
 
 public class CandidatoDto {
 
-	public CandidatoDto(String nome, String cpf, String email, String telefone, Genero genero, String dataNascimento,
-			String skill, String certificacao) {
+	public CandidatoDto(String nome, String cpf, String email, String telefone, Genero genero,
+			LocalDateTime dataNascimento, String skill, String certificacao) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
@@ -22,7 +24,7 @@ public class CandidatoDto {
 	private String email;
 	private String telefone;
 	private Genero genero;
-	private String dataNascimento;
+	private LocalDateTime dataNascimento;
 	private String skill;
 	private String certificacao;
 
@@ -46,7 +48,7 @@ public class CandidatoDto {
 		return genero;
 	}
 
-	public String getDataNascimento() {
+	public LocalDateTime getDataNascimento() {
 		return dataNascimento;
 	}
 
@@ -65,7 +67,7 @@ public class CandidatoDto {
 		String email = candidatoDto.getEmail();
 		String telefone = candidatoDto.getTelefone();
 		Genero genero = candidatoDto.getGenero();
-		String dataNascimento = candidatoDto.getDataNascimento();
+		LocalDateTime dataNascimento = candidatoDto.getDataNascimento();
 		String skill = candidatoDto.getSkill();
 		String certificacao = candidatoDto.getCertificacao();
 		
