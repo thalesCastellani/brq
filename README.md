@@ -21,10 +21,10 @@ Para trabalhar com a API, basta utilizar o Swagger, acessando a url: http://loca
 
 É possível trabalhar com todos os endpoints, desde buscas pelas palavras-chave e o de cadastro.
 
-Atenção para primeiro endpoint(GET /candidato/skill/{skill}) que é o diferencial da entrega: 
+Atenção para o endpoint(GET /candidato/skill/{skill}) que é o diferencial da entrega: 
 
-Nele é feita uma busca pela skillm, onde:
-  * Caso a skill informada exista no banco de dados, trará os registros dos candidatos que possuem essa skill e pela ordem de ranking (quais possuem a skill mas também possuem a certificaç!ao referente aquela skill)
+Nele é feita uma busca pela skill, onde:
+  * Caso a skill informada exista no banco de dados, trará os registros dos candidatos que possuem essa skill e pela ordem de ranking (quais possuem a skill mas também possuem a certificação referente aquela skill, os que não tiverem a certificação ficaram para baixo)
   * Caso a skill não seja encontrada, retornará um 404 Not found
 
 O endpoint GET /candidato traz todos os registrs do banco de dados pela ordem default da primary key
