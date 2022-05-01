@@ -48,7 +48,7 @@ public class CandidatoController {
 						)
 				));
 		
-		Page<Candidato> candidatos = candidatoRepository.findBySkill(skill, paginacao);
+		Page<Candidato> candidatos = candidatoRepository.findBySkill_Nome(skill, paginacao);
 		
 		if (!candidatos.isEmpty()) {
 			return ResponseEntity.ok(candidatos);

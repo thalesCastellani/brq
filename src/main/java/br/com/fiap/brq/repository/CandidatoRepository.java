@@ -12,7 +12,7 @@ import br.com.fiap.brq.model.Candidato;
 @Repository
 public interface CandidatoRepository extends JpaRepository<Candidato, Long> {
 
-	Page<Candidato> findBySkill(String skill, Pageable paginacao);
+	Page<Candidato> findBySkill_Nome(String skill, Pageable paginacao);
 
 	Optional<Candidato> findByNome(String nome);
 

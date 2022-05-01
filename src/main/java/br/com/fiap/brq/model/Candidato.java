@@ -1,15 +1,19 @@
 package br.com.fiap.brq.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -43,8 +47,9 @@ public class Candidato {
 	@JsonProperty("data_nascimento")
 	private LocalDateTime dataNascimento;
 
-	@Column(name = "ds_skill", nullable = true)
-	private String skill;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Column(name = "ds_skills")
+	private List<Skill> skill;
 
 	@Column(name = "nm_certificacao")
 	private String certificacao;
@@ -77,7 +82,7 @@ public class Candidato {
 		return dataNascimento;
 	}
 
-	public String getSkill() {
+	public List<Skill> getSkills() {
 		return skill;
 	}
 
@@ -109,8 +114,8 @@ public class Candidato {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public void setSkill(String skill) {
-		this.skill = skill;
+	public void setSkills(List<Skill> skills) {
+		this.skill = skills;
 	}
 
 	public void setCertificacao(String certificacao) {
@@ -120,7 +125,7 @@ public class Candidato {
 	@Override
 	public String toString() {
 		return "Candidato [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", telefone=" + telefone
-				+ ", genero=" + genero + ", dataNascimento=" + dataNascimento + ", skill=" + skill + ", certificacao="
+				+ ", genero=" + genero + ", dataNascimento=" + dataNascimento + ", skills=" + skill + ", certificacao="
 				+ certificacao + "]";
 	}
 
